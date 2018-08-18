@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1>Edit profile</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render "layouts/error_messages", model: @user %>
+    <%= form_for(@user) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" href="#collapseOne">パスワード変更はこちらから</a>
+          </h3>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="form-group">
+              <%= f.label :password, "Password" %>
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation, "Confirmation" %>
+              <%= f.password_field :password_confirmation, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <%= f.submit "Edit", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
