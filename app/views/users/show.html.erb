@@ -8,7 +8,7 @@
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-    <% if @current_user.id == params[:id].to_i %>
+    <% if @current_user.id == @user.id%>
       <%= link_to "Edit profile", edit_user_path(current_user), class: "btn btn-success btn-block" %>
       <%= link_to "Delete account", "/users/#{current_user.id}", method: "delete", class: "btn btn-danger btn-block", data: {confirm: "本当に削除しますか？"} %>
     <% end %>
