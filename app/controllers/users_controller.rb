@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   include SessionsHelper
   
-  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy, :followings, :followers]
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
@@ -52,6 +52,18 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "ユーザーを削除しました。"
     redirect_to root_url
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+    counts(@user)
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
+    counts(@user)
   end
   
   
