@@ -2,12 +2,21 @@
     <%= render "layouts/error_messages", model: @micropost %>
     <div class="row">
         <aside class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= @user.name %></h3>
+              </div>
+              <div class="panel-body">
+                <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+              </div>
+            </div>
             <%= form_for(@micropost) do |f| %>
                 <div class="form-group">
                     <%= f.text_area :content, class: "form-control", rows: 5 %>
                 </div>
                 <%= f.submit "Post", class: "btn btn-primary btn-block" %>
             <% end %>
+            <%= link_to "Link to my favorite posts", likes_user_path(current_user), class: "btn btn-success btn-block", style: "margin-top: 10px;"%>
         </aside>
         <div class="col-xs-8">
             <%= render "microposts/microposts", microposts: @microposts %>

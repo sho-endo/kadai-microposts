@@ -11,10 +11,15 @@
         <div>
           <p><%= micropost.content %></p>
         </div>
-        <div>
-          <% if current_user == micropost.user %>
-            <%= link_to "delete", micropost, method: "delete", data: { confirm: "You sure?" },class: "btn btn-danger btn-xs pull-right" %>
-          <% end %>
+        <div class="clearfix">
+          <div class="pull-right" style="margin-left: 5px;">
+            <% if current_user == micropost.user %>
+              <%= link_to "delete", micropost, method: "delete", data: { confirm: "You sure?" },class: "btn btn-danger btn-xs" %>
+            <% end %>
+          </div>
+          <div class="pull-right">
+            <%= render "likes/like_button", micropost: micropost %>
+          </div>
         </div>
       </div>
     </li>
