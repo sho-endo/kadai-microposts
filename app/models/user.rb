@@ -6,12 +6,12 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
-  has_many :microposts
-  has_many :relationships
+  has_many :microposts, dependent: :destroy
+  has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
-  has_many :revereses_of_relationship, class_name: "Relationship", foreign_key: "follow_id"
+  has_many :revereses_of_relationship, class_name: "Relationship", foreign_key: "follow_id", dependent: :destroy
   has_many :followers, through: :revereses_of_relationship, source: :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liking_microposts, through: :likes, source: :micropost
   
   def follow(other_user)
